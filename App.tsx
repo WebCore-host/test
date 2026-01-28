@@ -4,9 +4,9 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
+import Booking from './components/Booking';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { getCalApi } from "https://esm.sh/@calcom/embed-react@1.5.0";
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,18 +17,6 @@ const App: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({"namespace":"15min"});
-      cal("floatingButton", {
-        "calLink": "john-dqwgkb/15min",
-        "config": { "layout": "week_view", "useSlotsViewOnSmallScreen": "true" },
-        "buttonText": "Book my Appointment"
-      });
-      cal("ui", { "hideEventTypeDetails": false, "layout": "week_view" });
-    })();
   }, []);
 
   return (
@@ -46,6 +34,9 @@ const App: React.FC = () => {
         </section>
         <section id="portfolio">
           <Portfolio />
+        </section>
+        <section id="booking">
+          <Booking />
         </section>
         <section id="contact">
           <Contact />
