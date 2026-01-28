@@ -6,7 +6,7 @@ import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { getCalApi } from "@calcom/embed-react";
+import { getCalApi } from "https://esm.sh/@calcom/embed-react@1.5.0";
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
