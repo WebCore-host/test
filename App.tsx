@@ -6,7 +6,7 @@ import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Booking from './components/Booking';
+import { getCalApi } from "@calcom/embed-react";
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,6 +17,18 @@ const App: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"15min"});
+      cal("floatingButton", {
+        "calLink": "john-dqwgkb/15min",
+        "config": { "layout": "week_view", "useSlotsViewOnSmallScreen": "true" },
+        "buttonText": "Book my Appointment"
+      });
+      cal("ui", { "hideEventTypeDetails": false, "layout": "week_view" });
+    })();
   }, []);
 
   return (
@@ -32,7 +44,6 @@ const App: React.FC = () => {
         <section id="services">
           <Services />
         </section>
-        <Booking />
         <section id="portfolio">
           <Portfolio />
         </section>
