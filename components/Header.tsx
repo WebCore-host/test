@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 interface HeaderProps {
@@ -44,10 +43,10 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
             </a>
           ))}
           <a 
-            href="#contact" 
+            href="#booking" 
             className="bg-gold hover:bg-yellow-400 text-slate-900 px-6 py-2.5 rounded font-bold text-sm uppercase transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg"
           >
-            Schedule Appointment
+            Book Appointment
           </a>
         </nav>
 
@@ -79,11 +78,11 @@ const Header: React.FC<HeaderProps> = ({ isScrolled }) => {
               </a>
             ))}
             <a 
-              href="#contact" 
+              href="#booking" 
               onClick={() => setIsMenuOpen(false)}
               className="bg-gold text-slate-900 px-6 py-4 rounded font-bold text-center uppercase active:scale-95 transition-transform duration-200 shadow-xl"
             >
-              Schedule Appointment
+              Book Appointment
             </a>
           </div>
         </div>
