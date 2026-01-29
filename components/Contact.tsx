@@ -74,6 +74,21 @@ const Contact: React.FC = () => {
                   <p className="text-slate-600 font-semibold">2202 Bingle Rd, Houston, TX 77055</p>
                 </div>
               </div>
+
+              {/* Map Integration */}
+              <div className="mt-12 rounded-2xl overflow-hidden shadow-xl border border-slate-100 group transition-all duration-500 hover:shadow-2xl">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3461.747675949946!2d-95.50276552445854!3d29.81383322946029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8d800e6cbdb06737%3A0x5c2cfe545a9e6330!2sHouston%20Empire%20Electric!5e0!3m2!1sen!2sus!4v1769657265647!5m2!1sen!2sus" 
+                  width="100%" 
+                  height="300" 
+                  style={{ border: 0 }} 
+                  allowFullScreen={true} 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Houston Empire Electric Location"
+                  className="filter grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700"
+                ></iframe>
+              </div>
             </div>
           </div>
 
