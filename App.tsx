@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import ShowcaseSection from './components/ShowcaseSection';
 import About from './components/About';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
@@ -26,6 +27,7 @@ const App: React.FC = () => {
         <section id="home">
           <Hero />
         </section>
+        <ShowcaseSection />
         <section id="about">
           <About />
         </section>
