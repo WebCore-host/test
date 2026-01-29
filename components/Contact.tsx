@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 const Contact: React.FC = () => {
@@ -11,8 +10,23 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for reaching out. We'll be in touch shortly.");
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    
+    const form = e.target as HTMLFormElement;
+    const data = new FormData(form);
+    
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(data as any).toString(),
+    })
+      .then(() => {
+        alert("Thank you for reaching out. We'll be in touch shortly.");
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      })
+      .catch((error) => {
+        console.error("Netlify Form Error:", error);
+        alert("There was an error sending your message. Please try again or call us directly.");
+      });
   };
 
   return (
@@ -66,12 +80,22 @@ const Contact: React.FC = () => {
           <div className="lg:w-2/3 bg-slate-950 p-10 md:p-16 rounded-3xl shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
             <div className="relative z-10">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form 
+                name="contact" 
+                method="POST" 
+                data-netlify="true" 
+                onSubmit={handleSubmit} 
+                className="space-y-6"
+              >
+                {/* Hidden input for Netlify bot detection in React */}
+                <input type="hidden" name="form-name" value="contact" />
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-white/60 text-xs font-bold uppercase tracking-widest ml-1">Full Name</label>
                     <input 
                       type="text" 
+                      name="name"
                       required
                       placeholder="John Doe"
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-gold transition-all duration-200"
@@ -83,6 +107,7 @@ const Contact: React.FC = () => {
                     <label className="text-white/60 text-xs font-bold uppercase tracking-widest ml-1">Email Address</label>
                     <input 
                       type="email" 
+                      name="email"
                       required
                       placeholder="john@example.com"
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-gold transition-all duration-200"
@@ -95,6 +120,7 @@ const Contact: React.FC = () => {
                   <label className="text-white/60 text-xs font-bold uppercase tracking-widest ml-1">Phone Number</label>
                   <input 
                     type="tel" 
+                    name="phone"
                     placeholder="(713) 000-0000"
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-gold transition-all duration-200"
                     value={formData.phone}
@@ -104,6 +130,7 @@ const Contact: React.FC = () => {
                 <div className="space-y-2">
                   <label className="text-white/60 text-xs font-bold uppercase tracking-widest ml-1">Project Details</label>
                   <textarea 
+                    name="message"
                     rows={5}
                     placeholder="Tell us about your electrical needs..."
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-gold transition-all resize-none duration-200"
