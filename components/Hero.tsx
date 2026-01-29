@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const Hero: React.FC = () => {
@@ -8,7 +7,7 @@ const Hero: React.FC = () => {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1621905231291-00741c7e63d5?q=80&w=2070&auto=format&fit=crop")',
+          backgroundImage: 'url("/photo.png")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
