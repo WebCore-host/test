@@ -1,7 +1,12 @@
-
 import React from 'react';
 
 const Footer: React.FC = () => {
+  const socialLinks = [
+    { name: 'FB', href: 'https://www.facebook.com/profile.php?id=61586115502341' },
+    { name: 'IG', href: '#' },
+    { name: 'LI', href: '#' },
+  ];
+
   return (
     <footer className="bg-slate-950 text-white py-12 border-t border-white/10">
       <div className="container mx-auto px-6">
@@ -26,14 +31,16 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="flex space-x-6">
-            {/* Simple Social Links */}
-            {['FB', 'IG', 'LI'].map((social) => (
+            {/* Social Links */}
+            {socialLinks.map((social) => (
               <a 
-                key={social} 
-                href="#" 
+                key={social.name} 
+                href={social.href}
+                target={social.href !== '#' ? "_blank" : undefined}
+                rel={social.href !== '#' ? "noopener noreferrer" : undefined}
                 className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:border-gold hover:text-slate-900 transition-all font-bold text-xs"
               >
-                {social}
+                {social.name}
               </a>
             ))}
           </div>
